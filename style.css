@@ -5,7 +5,8 @@
 * @date 12-23-2020
 */
 :root {
-  --card-bg-color:linear-gradient(to bottom, #002b70, #5797ff);
+  --card-background-front:linear-gradient(to bottom, rgba(0,0,0, .3), rgba(0,0,0,.3));
+  --card-background-back:linear-gradient(to bottom, rgba(0,0,0, .5), rgba(0,0,0,.5));
   --rotate-duration: 15s;
   
 }
@@ -13,6 +14,23 @@
   box-sizing: content;
 }
 
+.text-color-white{
+  color:#ffffff;
+}
+.text-color-black{
+  color:#000000;
+}
+
+div#atm-card-theme-custom div.atm-card-front img.atm-background-image,
+div#atm-card-theme-custom div.atm-card-back img.atm-background-image{
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 5px;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
 
 div.atm-card-container {
   display: flex;
@@ -22,33 +40,44 @@ div.atm-card-container {
   align-items: center;
 }
 
+div#atm-card-theme-custom{
+  position: relative;
+  display: flex;
+  height: 200px;
+  width: 350px;
+}
+
 div#atm-card-theme-1{
   position: relative;
   display: flex;
   height: 200px;
   width: 350px;
-  --card-bg-color:linear-gradient(to bottom, #002b70, #357aeb);
+  --card-background-front:linear-gradient(to bottom, #002b70, #357aeb);
+  --card-background-back:linear-gradient(to bottom, #002b70, #357aeb);
 }
 div#atm-card-theme-2{
   position: relative;
   display: flex;
   height: 200px;
   width: 350px;
-  --card-bg-color:linear-gradient(to bottom left, #000000, #ff0000);
+  --card-background-front:linear-gradient(to bottom left, #000000, #ff0000);
+  --card-background-back:linear-gradient(to bottom left, #000000, #ff0000);
 }
 div#atm-card-theme-3{
   position: relative;
   display: flex;
   height: 200px;
   width: 350px;
-  --card-bg-color:linear-gradient(to top, #878787, #303845);
+  --card-background-front:linear-gradient(to top, #878787, #303845);
+  --card-background-back:linear-gradient(to top, #878787, #303845);
 }
 div#atm-card-theme-4{
   position: relative;
   display: flex;
   height: 200px;
   width: 350px;
-  --card-bg-color:linear-gradient(to left, #bdd4e7 0%, #8693ab 74%);
+  --card-background-front:linear-gradient(to left, #bdd4e7 0%, #8693ab 74%);
+  --card-background-back:linear-gradient(to left, #bdd4e7 0%, #8693ab 74%);
 }
 
 div.atm-card-front, div.atm-card-back{
@@ -57,17 +86,29 @@ div.atm-card-front, div.atm-card-back{
   height: 100%;
   width: 100%;
   border-radius: 5px;
-  background-image: var(--card-bg-color);
+  background-size: auto;
   box-shadow:5px 5px 25px grey;
 }
+
+div.atm-card-front {
+  background: var(--card-background-front) no-repeat center;
+}
+div.atm-card-back {
+  background: var(--card-background-back) no-repeat center;
+}
+
 div.atm-card-front{
   z-index: 1;
   backface-visibility: hidden;
+  transition: transform 2s;
 }
-
-div.atm-card-back{
+.atm-card-back{
   transform: rotateY(180deg);
+  
+}
+div.atm-card-back{
   backface-visibility: hidden;
+  transition: transform 2s;
 }
 
 span.atm-bank-name {
